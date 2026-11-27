@@ -53,9 +53,18 @@ export function base({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
                     'error',
                     {
                         allow: [
+                            '#__PURE__',
+                            '<reference',
+                            '@jsx',
+                            '@license',
+                            '@preserve',
                             '@ts-',
+                            '@vitest-environment',
+                            'biome-ignore',
+                            'c8 ignore',
                             'eslint',
                             'global',
+                            'istanbul ',
                             'prettier-ignore',
                             'v8 ignore',
                         ],
