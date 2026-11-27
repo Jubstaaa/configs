@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/Jubstaaa/configs/compare/v1.3.0...v1.4.0) (2026-11-27)
+
+
+### Features
+
+* add jubstaa-doctor, a shared repository check ([#10](https://github.com/Jubstaaa/configs/issues/10)) ([8727c4a](https://github.com/Jubstaaa/configs/commit/8727c4a71e645d89047cac314e6ecdd698ba85e8))
+
 ## [1.3.0](https://github.com/Jubstaaa/configs/compare/v1.2.0...v1.3.0) (2026-11-27)
 
 
