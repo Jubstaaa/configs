@@ -2,9 +2,33 @@ import { parseArgs } from 'node:util'
 
 const RULESET = 'protect-main'
 
+const SAMPLE_PULLS = 3
+
+interface CheckRun {
+    app: null | { slug: string }
+    conclusion: null | string
+    name: string
+}
+
+interface Pull {
+    head: { sha: string }
+    merged_at: null | string
+}
+
+interface Repo {
+    archived: boolean
+    default_branch: string
+    fork: boolean
+    name: string
+    owner: { login: string }
+}
+
 interface Ruleset {
     id: number
     name: string
+    rules?: {
+        parameters?: { required_status_checks?: { context: string }[] }
+    }[]
 }
 
 async function gh<T>(path: string, init?: RequestInit): Promise<T> {
@@ -26,42 +50,37 @@ async function gh<T>(path: string, init?: RequestInit): Promise<T> {
     return response.json() as Promise<T>
 }
 
-function jobNames(workflow: string): string[] {
-    const jobs = workflow.split('\njobs:\n')[1]
-    if (!jobs) return []
+async function kept(
+    owner: string,
+    repo: string,
+    existing: Ruleset | undefined
+): Promise<string[]> {
+    if (!existing) return []
+    const full = await gh<Ruleset>(
+        `/repos/${owner}/${repo}/rulesets/${String(existing.id)}`
+    )
 
-    const lines = jobs.split('\n')
-    const first = lines.find(line => /^\s+[a-z][\w-]*:\s*$/.test(line))
-    if (!first) return []
+    return (full.rules ?? [])
+        .flatMap(rule => rule.parameters?.required_status_checks ?? [])
+        .map(check => check.context)
+        .sort()
+}
 
-    const indent = first.length - first.trimStart().length
-    const atIndent = new RegExp(`^ {${String(indent)}}([a-z][\\w-]*):\\s*$`)
+async function ownRepos(owner: string): Promise<string[]> {
     const names: string[] = []
-    let current: null | string = null
-    let body = ''
-
-    const flush = (): void => {
-        if (
-            current !== null &&
-            !/if:.*event_name\s*!==?\s*'pull_request'/.test(body)
-        ) {
-            names.push(current)
+    for (let page = 1; ; page += 1) {
+        const batch = await gh<Repo[]>(
+            `/user/repos?affiliation=owner&per_page=100&page=${String(page)}`
+        )
+        for (const repo of batch) {
+            if (repo.archived || repo.fork) continue
+            if (repo.owner.login.toLowerCase() !== owner.toLowerCase()) continue
+            names.push(repo.name)
         }
-        body = ''
+        if (batch.length < 100) break
     }
 
-    for (const line of lines) {
-        const match = atIndent.exec(line)
-        if (match?.[1] !== undefined) {
-            flush()
-            current = match[1]
-        } else {
-            body += `${line}\n`
-        }
-    }
-    flush()
-
-    return names
+    return names.sort()
 }
 
 async function protect(
@@ -69,40 +88,38 @@ async function protect(
     repo: string,
     apply: boolean
 ): Promise<void> {
-    const checks = await requiredChecks(owner, repo)
-    if (checks.length === 0) {
-        console.log(`${repo}: no pull_request workflow, skipped`)
-
-        return
+    const existing = (
+        await gh<Ruleset[]>(`/repos/${owner}/${repo}/rulesets`)
+    ).find(rule => rule.name === RULESET)
+    const discovered = await requiredChecks(owner, repo)
+    const checks =
+        discovered.length > 0 ? discovered : await kept(owner, repo, existing)
+    const rules: unknown[] = [
+        { type: 'deletion' },
+        { type: 'non_fast_forward' },
+    ]
+    if (checks.length > 0) {
+        rules.push({
+            parameters: {
+                required_status_checks: checks.map(context => ({ context })),
+                strict_required_status_checks_policy: true,
+            },
+            type: 'required_status_checks',
+        })
     }
 
     const body = {
         conditions: { ref_name: { exclude: [], include: ['~DEFAULT_BRANCH'] } },
         enforcement: 'active',
         name: RULESET,
-        rules: [
-            { type: 'deletion' },
-            { type: 'non_fast_forward' },
-            {
-                parameters: {
-                    required_status_checks: checks.map(context => ({
-                        context,
-                    })),
-                    strict_required_status_checks_policy: true,
-                },
-                type: 'required_status_checks',
-            },
-        ],
+        rules,
         target: 'branch',
     }
-
-    const existing = (
-        await gh<Ruleset[]>(`/repos/${owner}/${repo}/rulesets`)
-    ).find(rule => rule.name === RULESET)
+    const summary = checks.join(', ') || 'no required checks'
 
     if (!apply) {
         console.log(
-            `${repo}: would ${existing ? 'update' : 'create'} with [${checks.join(', ')}]`
+            `${repo}: would ${existing ? 'update' : 'create'} with [${summary}]`
         )
 
         return
@@ -117,41 +134,55 @@ async function protect(
             method: existing ? 'PUT' : 'POST',
         }
     )
-    console.log(
-        `${repo}: ${existing ? 'updated' : 'created'} [${checks.join(', ')}]`
-    )
+    console.log(`${repo}: ${existing ? 'updated' : 'created'} [${summary}]`)
 }
 
 async function requiredChecks(owner: string, repo: string): Promise<string[]> {
-    const files = await gh<{ name: string; path: string }[]>(
-        `/repos/${owner}/${repo}/contents/.github/workflows`
+    const pulls = await gh<Pull[]>(
+        `/repos/${owner}/${repo}/pulls?state=closed&per_page=20&sort=updated&direction=desc`
     ).catch(() => [])
-    const names = new Set<string>()
-    for (const file of files) {
-        if (!/^(ci|check|test)\.ya?ml$/.test(file.name)) continue
-        const { content } = await gh<{ content: string }>(
-            `/repos/${owner}/${repo}/contents/${file.path}`
-        )
-        const text = Buffer.from(content, 'base64').toString('utf8')
-        if (!text.includes('pull_request')) continue
-        for (const job of jobNames(text)) names.add(job)
-    }
 
-    return [...names].sort()
+    const seen: Set<string>[] = []
+    for (const pull of pulls) {
+        if (pull.merged_at === null) continue
+        if (seen.length === SAMPLE_PULLS) break
+        const { check_runs: runs } = await gh<{ check_runs: CheckRun[] }>(
+            `/repos/${owner}/${repo}/commits/${pull.head.sha}/check-runs?per_page=100`
+        ).catch(() => ({ check_runs: [] }))
+        const names = runs
+            .filter(run => run.app?.slug === 'github-actions')
+            .filter(run => run.conclusion !== 'skipped')
+            .map(run => run.name)
+        if (names.length > 0) seen.push(new Set(names))
+    }
+    const [first, ...rest] = seen
+    if (!first) return []
+
+    return [...first]
+        .filter(name => rest.every(other => other.has(name)))
+        .sort()
 }
 
 const { positionals, values } = parseArgs({
     allowPositionals: true,
-    options: { apply: { type: 'boolean' }, owner: { type: 'string' } },
+    options: {
+        all: { type: 'boolean' },
+        apply: { type: 'boolean' },
+        owner: { type: 'string' },
+    },
 })
 const owner = values.owner ?? 'Jubstaaa'
 
-if (positionals.length === 0) {
-    console.error('usage: bun scripts/protect-branches.ts [--apply] <repo...>')
+if (positionals.length === 0 && values.all !== true) {
+    console.error(
+        'usage: bun scripts/protect-branches.ts [--apply] (--all | <repo...>)'
+    )
     process.exit(1)
 }
 
-for (const repo of positionals) {
+const repos = values.all === true ? await ownRepos(owner) : positionals
+
+for (const repo of repos) {
     await protect(owner, repo, values.apply === true).catch(
         (error: unknown) => {
             console.error(`${repo}: ${String(error)}`)
