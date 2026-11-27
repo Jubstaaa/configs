@@ -107,6 +107,13 @@ needs npm 11.5.1 or newer, and it deliberately sets **no `NODE_AUTH_TOKEN`** —
 npm reverts to token authentication when one is present, and the OIDC identity
 (`id-token: write`) is the credential that also produces provenance.
 
+### Branch protection
+
+Not here. [`Jubstaaa/protect-main`](https://github.com/Jubstaaa/protect-main)
+keeps a ruleset on every repository's default branch in step with the checks
+its pull requests actually report, on a schedule, so a repository created
+tomorrow is covered without being named.
+
 ## What the presets decide
 
 **Type-aware linting everywhere.** `strictTypeChecked` and
