@@ -29,17 +29,21 @@
     "peerDependencies": {
         "eslint": "^9.0.0 || ^10.0.0",
         "prettier": "^3.0.0",
-        "typescript": "^5.0.0"
+        "typescript": "^5.0.0",
+        "eslint-plugin-jsx-a11y": "^6.0.0",
+        "eslint-config-next": ">=15"
     },
     "dependencies": {
         "eslint-config-prettier": "^10.1.9",
-        "eslint-plugin-jsx-a11y": "^6.10.2",
         "eslint-plugin-no-comments": "^1.2.1",
         "eslint-plugin-perfectionist": "^5.14.0",
         "typescript-eslint": "^8.74.0"
     },
     "peerDependenciesMeta": {
         "eslint-config-next": {
+            "optional": true
+        },
+        "eslint-plugin-jsx-a11y": {
             "optional": true
         }
     }
