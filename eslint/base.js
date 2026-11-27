@@ -1,11 +1,21 @@
+import { includeIgnoreFile } from '@eslint/compat'
 import prettier from 'eslint-config-prettier/flat'
 import noComments from 'eslint-plugin-no-comments'
 import perfectionist from 'eslint-plugin-perfectionist'
 import { defineConfig } from 'eslint/config'
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
 import tseslint from 'typescript-eslint'
+
+function gitignore(root) {
+    if (!root) return []
+    const file = join(root, '.gitignore')
+    return existsSync(file) ? [includeIgnoreFile(file)] : []
+}
 
 export function base({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
     return defineConfig([
+        ...gitignore(tsconfigRootDir),
         {
             extends: [
                 tseslint.configs.strictTypeChecked,
