@@ -3,19 +3,37 @@
     "version": "1.4.0",
     "description": "Shared ESLint, TypeScript, Prettier and Renovate configuration",
     "license": "MIT",
-    "author": "İlker Balcılar",
+    "author": "\u0130lker Balc\u0131lar",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Jubstaaa/configs.git"
     },
     "type": "module",
     "exports": {
-        "./eslint/base": "./eslint/base.js",
-        "./eslint/library": "./eslint/library.js",
-        "./eslint/next": "./eslint/next.js",
-        "./eslint/node": "./eslint/node.js",
-        "./eslint/react": "./eslint/react.js",
-        "./prettier": "./prettier/index.js",
+        "./eslint/base": {
+            "types": "./dist/eslint/base.d.ts",
+            "default": "./dist/eslint/base.js"
+        },
+        "./eslint/library": {
+            "types": "./dist/eslint/library.d.ts",
+            "default": "./dist/eslint/library.js"
+        },
+        "./eslint/next": {
+            "types": "./dist/eslint/next.d.ts",
+            "default": "./dist/eslint/next.js"
+        },
+        "./eslint/node": {
+            "types": "./dist/eslint/node.d.ts",
+            "default": "./dist/eslint/node.js"
+        },
+        "./eslint/react": {
+            "types": "./dist/eslint/react.d.ts",
+            "default": "./dist/eslint/react.js"
+        },
+        "./prettier": {
+            "types": "./dist/prettier/index.d.ts",
+            "default": "./dist/prettier/index.js"
+        },
         "./tsconfig/base": "./typescript/base.json",
         "./tsconfig/library": "./typescript/library.json",
         "./tsconfig/next": "./typescript/next.json",
@@ -23,9 +41,7 @@
     },
     "files": [
         "default.json",
-        "eslint",
-        "prettier",
-        "scripts/doctor.js",
+        "dist",
         "typescript"
     ],
     "peerDependencies": {
@@ -37,10 +53,10 @@
         "typescript": "^5.0.0 || ^6.0.0"
     },
     "dependencies": {
-        "@eslint/compat": "^2.1.1",
         "eslint-config-prettier": "^10.1.9",
         "eslint-plugin-no-comments": "^1.2.1",
         "eslint-plugin-perfectionist": "^5.14.0",
+        "jiti": "^2.7.0",
         "typescript-eslint": "^8.74.0"
     },
     "peerDependenciesMeta": {
@@ -78,7 +94,19 @@
         "typescript": "^5.9.3"
     },
     "bin": {
-        "jubstaa-doctor": "./scripts/doctor.js"
+        "jubstaa-doctor": "./dist/bin/doctor.js"
     },
-    "packageManager": "bun@1.4.4"
+    "packageManager": "bun@1.4.4",
+    "scripts": {
+        "build": "tsc",
+        "format": "prettier . --write",
+        "format:check": "prettier . --check",
+        "lint": "eslint .",
+        "typecheck": "tsc --noEmit",
+        "doctor": "node dist/bin/doctor.js",
+        "presets:check": "node scripts/presets-check.mjs",
+        "pack:check": "node scripts/pack-check.mjs",
+        "audit": "bun audit --audit-level=high",
+        "prepack": "tsc"
+    }
 }

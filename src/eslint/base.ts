@@ -1,13 +1,22 @@
-import { includeIgnoreFile } from '@eslint/compat'
+import type { Linter } from 'eslint'
+
 import prettier from 'eslint-config-prettier/flat'
 import noComments from 'eslint-plugin-no-comments'
 import perfectionist from 'eslint-plugin-perfectionist'
-import { defineConfig } from 'eslint/config'
+import { defineConfig, includeIgnoreFile } from 'eslint/config'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import tseslint from 'typescript-eslint'
 
-export function base({ internalPattern = ['^@/'], tsconfigRootDir } = {}) {
+export interface PresetOptions {
+    internalPattern?: string[] | undefined
+    tsconfigRootDir?: string | undefined
+}
+
+export function base({
+    internalPattern = ['^@/'],
+    tsconfigRootDir,
+}: PresetOptions = {}): Linter.Config[] {
     return defineConfig([
         ...gitignore(tsconfigRootDir),
         {
@@ -112,7 +121,12 @@ export function base({ internalPattern = ['^@/'], tsconfigRootDir } = {}) {
             },
         },
         {
-            files: ['scripts/**', '**/*.config.{ts,mts,js,mjs}'],
+            files: [
+                'scripts/**',
+                '**/bin/**',
+                '**/cli.{ts,mts,js,mjs}',
+                '**/*.config.{ts,mts,js,mjs}',
+            ],
             rules: { 'no-console': 'off' },
         },
 
@@ -120,9 +134,10 @@ export function base({ internalPattern = ['^@/'], tsconfigRootDir } = {}) {
     ])
 }
 
-function gitignore(root) {
-    if (!root) return []
+function gitignore(root: string | undefined): Linter.Config[] {
+    if (root === undefined) return []
     const file = join(root, '.gitignore')
+
     return existsSync(file) ? [includeIgnoreFile(file)] : []
 }
 

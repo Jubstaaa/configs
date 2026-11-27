@@ -14,7 +14,7 @@ strictest version any of them had reached.
 ## Install
 
 ```bash
-bun add -D github:Jubstaaa/configs
+bun add -D @jubstaa/config
 ```
 
 ## Use
@@ -24,12 +24,17 @@ bun add -D github:Jubstaaa/configs
 Pick the preset that matches the project and pass it the directory holding
 `tsconfig.json`, which the type-aware rules need:
 
-```js
-// eslint.config.mjs
-import next from '@jubstaa/config/eslint/next'
+```ts
+// eslint.config.ts
+import { next } from '@jubstaa/config/eslint/next'
 
 export default next({ tsconfigRootDir: import.meta.dirname })
 ```
+
+The presets ship their own types, so a TypeScript config is checked like any
+other source file: a misspelled option or a wrong `refresh` target is a type
+error rather than a silent no-op. ESLint loads it through `jiti`, which comes
+with this package — nothing else to install. `eslint.config.mjs` still works.
 
 `next` for a Next.js app, `node` for a server or CLI, `library` for a published
 package, `base` for anything else. Each returns a flat config array, so project
@@ -118,6 +123,20 @@ Not here. [`Jubstaaa/protect-main`](https://github.com/Jubstaaa/protect-main)
 keeps a ruleset on every repository's default branch in step with the checks
 its pull requests actually report, on a schedule, so a repository created
 tomorrow is covered without being named.
+
+### How this package is built
+
+The presets are TypeScript, compiled to JavaScript and `.d.ts` by `tsc` into
+`dist/`, which is what the `exports` map points at. Authoring them in
+TypeScript is not cosmetic: when they were `.js` the type-aware rules never
+looked at them, so a deprecated API and a plugin config that can be `undefined`
+sat in them unnoticed. Both are fixed here.
+
+`outDir` is not in the TypeScript bases any more. A relative `outDir` resolves
+against the file that declares it, so a project extending
+`@jubstaa/config/tsconfig/library` and emitting would have written its build
+into `node_modules`. Paths describe a project's layout, so they belong in the
+project.
 
 ## What the presets decide
 

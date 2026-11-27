@@ -1,8 +1,8 @@
 import { defineConfig, globalIgnores } from 'eslint/config'
 
-import { node } from './eslint/node.js'
+import { node } from './dist/eslint/node.js'
 
 export default defineConfig([
-    globalIgnores(['node_modules/**']),
+    globalIgnores(['dist']),
     ...node({ tsconfigRootDir: import.meta.dirname }),
 ])
