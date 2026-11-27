@@ -29,6 +29,10 @@ export function base({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
                         varsIgnorePattern: '^_',
                     },
                 ],
+                '@typescript-eslint/prefer-nullish-coalescing': [
+                    'error',
+                    { ignorePrimitives: { string: true } },
+                ],
                 '@typescript-eslint/restrict-template-expressions': [
                     'error',
                     { allowNumber: true },
