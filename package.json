@@ -25,7 +25,7 @@
         "default.json",
         "eslint",
         "prettier",
-        "scripts",
+        "scripts/doctor.js",
         "typescript"
     ],
     "peerDependencies": {
