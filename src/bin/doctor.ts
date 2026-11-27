@@ -31,7 +31,7 @@ const ALLOWED_COMMENT = [
 
 const CHECKS = ['yaml-comments', 'files', 'package', 'scripts'] as const
 
-const REQUIRED_FIELDS = ['license', 'name', 'repository', 'type'] as const
+const REQUIRED_FIELDS = ['license', 'name', 'repository'] as const
 
 const REQUIRED_FILES = ['LICENSE', 'README.md']
 
