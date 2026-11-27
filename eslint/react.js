@@ -6,9 +6,9 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 import { base } from './base.js'
 
 export function react({
-    tsconfigRootDir,
     internalPattern = ['^@/'],
     refresh = 'vite',
+    tsconfigRootDir,
 } = {}) {
     return defineConfig([
         globalIgnores(['dist/**', 'build/**', 'coverage/**']),

@@ -45,7 +45,10 @@ export default [
 Pass `internalPattern` when the project's path alias is not `@/`:
 
 ```js
-next({ internalPattern: ['^@/', '^#site/'], tsconfigRootDir: import.meta.dirname })
+next({
+    internalPattern: ['^@/', '^#site/'],
+    tsconfigRootDir: import.meta.dirname,
+})
 ```
 
 ### TypeScript

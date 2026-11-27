@@ -5,68 +5,42 @@
         ":semanticCommits",
         ":semanticCommitTypeAll(chore)"
     ],
-    "schedule": [
-        "* 0-6 * * 1"
-    ],
+    "schedule": ["* 0-6 * * 1"],
     "timezone": "Europe/Istanbul",
-    "labels": [
-        "dependencies"
-    ],
+    "labels": ["dependencies"],
     "platformAutomerge": true,
     "packageRules": [
         {
-            "matchUpdateTypes": [
-                "minor",
-                "patch"
-            ],
+            "matchUpdateTypes": ["minor", "patch"],
             "matchCurrentVersion": "!/^0/",
             "automerge": true,
             "groupName": "non-major dependencies"
         },
         {
-            "matchUpdateTypes": [
-                "patch"
-            ],
+            "matchUpdateTypes": ["patch"],
             "matchCurrentVersion": "/^0/",
             "automerge": true,
             "groupName": "non-major dependencies"
         },
         {
-            "matchManagers": [
-                "github-actions"
-            ],
+            "matchManagers": ["github-actions"],
             "groupName": "github actions",
             "automerge": false
         },
         {
-            "matchManagers": [
-                "dockerfile",
-                "docker-compose"
-            ],
-            "matchUpdateTypes": [
-                "patch",
-                "digest"
-            ],
+            "matchManagers": ["dockerfile", "docker-compose"],
+            "matchUpdateTypes": ["patch", "digest"],
             "groupName": "container images",
             "automerge": true
         },
         {
-            "matchManagers": [
-                "dockerfile",
-                "docker-compose"
-            ],
-            "matchUpdateTypes": [
-                "major",
-                "minor"
-            ],
+            "matchManagers": ["dockerfile", "docker-compose"],
+            "matchUpdateTypes": ["major", "minor"],
             "groupName": "container images",
             "automerge": false
         },
         {
-            "matchPackageNames": [
-                "/^@tauri-apps//",
-                "/^tauri/"
-            ],
+            "matchPackageNames": ["/^@tauri-apps//", "/^tauri/"],
             "groupName": "tauri"
         }
     ],
@@ -75,12 +49,8 @@
         "automerge": true
     },
     "vulnerabilityAlerts": {
-        "labels": [
-            "security"
-        ],
-        "schedule": [
-            "at any time"
-        ],
+        "labels": ["security"],
+        "schedule": ["at any time"],
         "automerge": true
     },
     "dependencyDashboard": false

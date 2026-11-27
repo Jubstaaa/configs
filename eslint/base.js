@@ -7,13 +7,7 @@ import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import tseslint from 'typescript-eslint'
 
-function gitignore(root) {
-    if (!root) return []
-    const file = join(root, '.gitignore')
-    return existsSync(file) ? [includeIgnoreFile(file)] : []
-}
-
-export function base({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
+export function base({ internalPattern = ['^@/'], tsconfigRootDir } = {}) {
     return defineConfig([
         ...gitignore(tsconfigRootDir),
         {
@@ -106,10 +100,10 @@ export function base({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
                 '@typescript-eslint/no-confusing-void-expression': 'off',
                 '@typescript-eslint/no-empty-function': 'off',
                 '@typescript-eslint/no-non-null-assertion': 'off',
-                '@typescript-eslint/no-unsafe-enum-assignment': 'off',
                 '@typescript-eslint/no-unsafe-argument': 'off',
                 '@typescript-eslint/no-unsafe-assignment': 'off',
                 '@typescript-eslint/no-unsafe-class-instance-assignment': 'off',
+                '@typescript-eslint/no-unsafe-enum-assignment': 'off',
                 '@typescript-eslint/require-await': 'off',
                 '@typescript-eslint/unbound-method': 'off',
                 'no-console': 'off',
@@ -122,6 +116,12 @@ export function base({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
 
         prettier,
     ])
+}
+
+function gitignore(root) {
+    if (!root) return []
+    const file = join(root, '.gitignore')
+    return existsSync(file) ? [includeIgnoreFile(file)] : []
 }
 
 export default base

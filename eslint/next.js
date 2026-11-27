@@ -5,21 +5,7 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 
 import { base } from './base.js'
 
-function a11yBlock() {
-    const registered = [...nextVitals, ...nextTs].find(
-        entry => entry.plugins?.['jsx-a11y']
-    )
-    const rules = jsxA11y.flatConfigs.recommended.rules
-    return registered
-        ? { files: ['**/*.{jsx,tsx}'], rules }
-        : {
-              files: ['**/*.{jsx,tsx}'],
-              plugins: { 'jsx-a11y': jsxA11y },
-              rules,
-          }
-}
-
-export function next({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
+export function next({ internalPattern = ['^@/'], tsconfigRootDir } = {}) {
     return defineConfig([
         globalIgnores([
             '.next/**',
@@ -37,6 +23,20 @@ export function next({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
             rules: { '@typescript-eslint/require-await': 'off' },
         },
     ])
+}
+
+function a11yBlock() {
+    const registered = [...nextVitals, ...nextTs].find(
+        entry => entry.plugins?.['jsx-a11y']
+    )
+    const rules = jsxA11y.flatConfigs.recommended.rules
+    return registered
+        ? { files: ['**/*.{jsx,tsx}'], rules }
+        : {
+              files: ['**/*.{jsx,tsx}'],
+              plugins: { 'jsx-a11y': jsxA11y },
+              rules,
+          }
 }
 
 export default next
