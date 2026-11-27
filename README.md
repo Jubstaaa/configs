@@ -26,7 +26,7 @@ Pick the preset that matches the project and pass it the directory holding
 
 ```js
 // eslint.config.mjs
-import next from '@jubstaaa/config/eslint/next'
+import next from '@jubstaa/config/eslint/next'
 
 export default next({ tsconfigRootDir: import.meta.dirname })
 ```
@@ -55,7 +55,7 @@ next({
 
 ```json
 {
-    "extends": "@jubstaaa/config/tsconfig/next",
+    "extends": "@jubstaa/config/tsconfig/next",
     "compilerOptions": { "paths": { "@/*": ["./src/*"] } },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"]
 }
@@ -67,7 +67,7 @@ not its standards.
 ### Prettier
 
 ```json
-{ "prettier": "@jubstaaa/config/prettier" }
+{ "prettier": "@jubstaa/config/prettier" }
 ```
 
 ### Renovate
