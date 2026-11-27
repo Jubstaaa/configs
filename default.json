@@ -43,13 +43,8 @@
                 "dockerfile",
                 "docker-compose"
             ],
-            "matchUpdateTypes": [
-                "minor",
-                "patch",
-                "digest"
-            ],
             "groupName": "container images",
-            "automerge": true
+            "automerge": false
         },
         {
             "matchPackageNames": [
