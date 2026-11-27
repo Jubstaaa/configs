@@ -88,6 +88,7 @@ export function base({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
                 '@typescript-eslint/no-unsafe-assignment': 'off',
                 '@typescript-eslint/no-unsafe-class-instance-assignment': 'off',
                 '@typescript-eslint/require-await': 'off',
+                '@typescript-eslint/unbound-method': 'off',
             },
         },
         {
