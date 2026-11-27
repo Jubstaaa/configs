@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/Jubstaaa/configs/compare/v1.4.0...v1.5.0) (2026-11-27)
+
+
+### Features
+
+* write the presets in TypeScript ([#15](https://github.com/Jubstaaa/configs/issues/15)) ([1e1a844](https://github.com/Jubstaaa/configs/commit/1e1a844a2049864c2f10df3d4fdde64b47db51ff))
+
 ## [1.4.0](https://github.com/Jubstaaa/configs/compare/v1.3.0...v1.4.0) (2026-11-27)
 
 
