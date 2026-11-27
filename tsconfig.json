@@ -5,5 +5,10 @@
         "checkJs": false,
         "types": ["node"]
     },
-    "include": ["eslint/**/*.js", "prettier/**/*.js", "*.mjs"]
+    "include": [
+        "eslint/**/*.js",
+        "prettier/**/*.js",
+        "scripts/**/*.ts",
+        "*.mjs"
+    ]
 }
