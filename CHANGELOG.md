@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.6.0](https://github.com/Jubstaaa/configs/compare/v1.5.0...v1.6.0) (2026-11-27)
+
+
+### Features
+
+* **release:** publish an existing tag on demand ([#21](https://github.com/Jubstaaa/configs/issues/21)) ([4473213](https://github.com/Jubstaaa/configs/commit/4473213580ad326a2169989b323480297465e986))
+
+
+### Bug Fixes
+
+* **release:** install before publishing ([#19](https://github.com/Jubstaaa/configs/issues/19)) ([092ade3](https://github.com/Jubstaaa/configs/commit/092ade32924073c72f07b347d372a3b50d01c49d))
+
 ## [1.5.0](https://github.com/Jubstaaa/configs/compare/v1.4.0...v1.5.0) (2026-11-27)
 
 
