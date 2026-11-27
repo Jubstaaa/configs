@@ -1,14 +1,11 @@
 {
-    "extends": "./typescript/node.json",
+    "extends": "./typescript/library.json",
     "compilerOptions": {
-        "allowJs": true,
-        "checkJs": false,
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "outDir": "dist",
+        "rootDir": "src",
         "types": ["node"]
     },
-    "include": [
-        "eslint/**/*.js",
-        "prettier/**/*.js",
-        "scripts/**/*.ts",
-        "*.mjs"
-    ]
+    "include": ["src"]
 }
