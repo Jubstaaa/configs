@@ -30,7 +30,6 @@ jobs:
         timeout-minutes: 10
         permissions:
             contents: read
-            # npm trades this for a short-lived publish credential.
             id-token: write
         steps:
             - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -39,10 +38,7 @@ jobs:
                   ref: ${{ needs.release-please.outputs.tag }}
             - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
               with:
-                  # Trusted publishing wants npm 11.5.1+, which ships with 24.
                   node-version: 24
                   registry-url: https://registry.npmjs.org
                   package-manager-cache: false
-            # No NODE_AUTH_TOKEN: the OIDC identity above is the credential, and
-            # npm attaches provenance by itself when it is used.
             - run: npm publish --access public

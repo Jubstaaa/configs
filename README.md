@@ -80,6 +80,33 @@ One line per repository, and the dependency policy lives in one place. Dependabo
 has no equivalent — its configuration cannot be shared — which is the reason to
 move.
 
+### Repository checks
+
+```sh
+npx --yes --package=@jubstaa/config jubstaa-doctor
+```
+
+`jubstaa-doctor` checks what every repository is supposed to have, from the
+repository root. `--only=<check>[,<check>]` runs a subset; the checks are
+`yaml-comments`, `files`, `package` and `scripts`.
+
+| Check           | What it fails on                                                                                                                                                                                                                                                                                                                                   |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `yaml-comments` | a prose comment in any tracked `.yml`/`.yaml`. Machine-readable ones stay: the version after a pinned action SHA (`# v7.0.1`), which is what Renovate reads to know which tag that SHA is, plus `yaml-language-server:`, `renovate:`, `yamllint`, `checkov:skip=`, `trivy:ignore:`, `noqa`, `shellcheck disable=`, `prettier-ignore` and `zizmor:` |
+| `files`         | a missing `LICENSE` or `README.md`                                                                                                                                                                                                                                                                                                                 |
+| `package`       | a missing `license`, `name`, `repository`, `type` or `packageManager`; a public package with no `version`                                                                                                                                                                                                                                          |
+| `scripts`       | a script under an old name — `type-check`, `tsc`, `types`, `deps:check`, `deps:graph`, `dupes`, `duplication` — when the canonical name (`typecheck`, `depcruise`, `jscpd`) is not also defined                                                                                                                                                    |
+
+The reason to keep comments out of YAML is the same as in code: a comment
+cannot be run, so it goes stale without anything failing. Rationale belongs in
+the README, where it is read; the workflow should say what it does by itself.
+
+Two things the release workflow no longer says in a comment, because they are
+easy to break and belong here: it runs on **Node 24**, since trusted publishing
+needs npm 11.5.1 or newer, and it deliberately sets **no `NODE_AUTH_TOKEN`** —
+npm reverts to token authentication when one is present, and the OIDC identity
+(`id-token: write`) is the credential that also produces provenance.
+
 ## What the presets decide
 
 **Type-aware linting everywhere.** `strictTypeChecked` and
