@@ -71,5 +71,6 @@
             "at any time"
         ],
         "automerge": true
-    }
+    },
+    "dependencyDashboard": false
 }
