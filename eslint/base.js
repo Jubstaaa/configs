@@ -102,11 +102,14 @@ export function base({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
             ],
             rules: {
                 '@typescript-eslint/no-empty-function': 'off',
+                '@typescript-eslint/no-non-null-assertion': 'off',
+                '@typescript-eslint/no-unsafe-enum-assignment': 'off',
                 '@typescript-eslint/no-unsafe-argument': 'off',
                 '@typescript-eslint/no-unsafe-assignment': 'off',
                 '@typescript-eslint/no-unsafe-class-instance-assignment': 'off',
                 '@typescript-eslint/require-await': 'off',
                 '@typescript-eslint/unbound-method': 'off',
+                'no-console': 'off',
             },
         },
         {
