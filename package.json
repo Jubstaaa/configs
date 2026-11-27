@@ -99,15 +99,15 @@
     "packageManager": "bun@1.4.4",
     "scripts": {
         "audit": "bun audit --audit-level=high",
-        "build": "tsc",
+        "build": "tsc -p tsconfig.build.json",
         "doctor": "node dist/bin/doctor.js",
         "format": "prettier . --write",
         "format:check": "prettier . --check",
         "lint": "eslint .",
-        "pack:check": "node scripts/pack-check.mjs",
-        "prepack": "tsc",
-        "prepare": "tsc",
-        "presets:check": "node scripts/presets-check.mjs",
+        "pack:check": "bun scripts/pack-check.ts",
+        "prepack": "tsc -p tsconfig.build.json",
+        "prepare": "tsc -p tsconfig.build.json",
+        "presets:check": "bun scripts/presets-check.ts",
         "typecheck": "tsc --noEmit"
     }
 }

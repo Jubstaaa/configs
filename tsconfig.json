@@ -3,9 +3,8 @@
     "compilerOptions": {
         "module": "nodenext",
         "moduleResolution": "nodenext",
-        "outDir": "dist",
-        "rootDir": "src",
+        "noEmit": true,
         "types": ["node"]
     },
-    "include": ["src"]
+    "include": ["src", "eslint.config.ts", "prettier.config.ts", "scripts"]
 }
