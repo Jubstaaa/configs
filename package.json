@@ -4,7 +4,10 @@
     "description": "Shared ESLint, TypeScript, Prettier and Renovate configuration",
     "license": "MIT",
     "author": "İlker Balcılar",
-    "repository": { "type": "git", "url": "git+https://github.com/Jubstaaa/configs.git" },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Jubstaaa/configs.git"
+    },
     "type": "module",
     "exports": {
         "./eslint/base": "./eslint/base.js",
@@ -17,20 +20,29 @@
         "./tsconfig/node": "./typescript/node.json",
         "./tsconfig/library": "./typescript/library.json"
     },
-    "files": ["eslint", "typescript", "prettier", "default.json"],
+    "files": [
+        "eslint",
+        "typescript",
+        "prettier",
+        "default.json"
+    ],
     "peerDependencies": {
         "eslint": "^9.0.0 || ^10.0.0",
         "prettier": "^3.0.0",
         "typescript": "^5.0.0"
     },
     "dependencies": {
-        "eslint-config-prettier": "^10.1.8",
+        "eslint-config-prettier": "^10.1.9",
         "eslint-plugin-no-comments": "^1.2.1",
-        "eslint-plugin-perfectionist": "^4.15.0",
-        "typescript-eslint": "^8.46.0"
+        "eslint-plugin-perfectionist": "^5.14.0",
+        "typescript-eslint": "^8.74.0"
     },
     "peerDependenciesMeta": {
-        "eslint-config-next": { "optional": true },
-        "eslint-plugin-jsx-a11y": { "optional": true }
+        "eslint-config-next": {
+            "optional": true
+        },
+        "eslint-plugin-jsx-a11y": {
+            "optional": true
+        }
     }
 }
