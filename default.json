@@ -1,0 +1,30 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:recommended",
+        ":semanticCommits",
+        ":semanticCommitTypeAll(chore)"
+    ],
+    "schedule": ["* 0-6 * * 1"],
+    "timezone": "Europe/Istanbul",
+    "labels": ["dependencies"],
+    "packageRules": [
+        {
+            "matchUpdateTypes": ["minor", "patch"],
+            "matchCurrentVersion": "!/^0/",
+            "automerge": true,
+            "groupName": "non-major dependencies"
+        },
+        {
+            "matchManagers": ["github-actions"],
+            "groupName": "github actions",
+            "automerge": false
+        },
+        {
+            "matchPackageNames": ["/^@tauri-apps//", "/^tauri/"],
+            "groupName": "tauri"
+        }
+    ],
+    "lockFileMaintenance": { "enabled": true, "automerge": true },
+    "vulnerabilityAlerts": { "labels": ["security"] }
+}

@@ -1,0 +1,90 @@
+import prettier from 'eslint-config-prettier/flat'
+import noComments from 'eslint-plugin-no-comments'
+import perfectionist from 'eslint-plugin-perfectionist'
+import { defineConfig } from 'eslint/config'
+import tseslint from 'typescript-eslint'
+
+export function base({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
+    return defineConfig([
+        {
+            extends: [
+                tseslint.configs.strictTypeChecked,
+                tseslint.configs.stylisticTypeChecked,
+            ],
+            files: ['**/*.{ts,tsx,mts,cts}'],
+            languageOptions: {
+                parserOptions: { projectService: true, tsconfigRootDir },
+            },
+            rules: {
+                '@typescript-eslint/consistent-type-imports': [
+                    'error',
+                    { fixStyle: 'inline-type-imports' },
+                ],
+                '@typescript-eslint/no-import-type-side-effects': 'error',
+                '@typescript-eslint/no-unused-vars': [
+                    'error',
+                    {
+                        argsIgnorePattern: '^_',
+                        caughtErrorsIgnorePattern: '^_',
+                        varsIgnorePattern: '^_',
+                    },
+                ],
+                '@typescript-eslint/restrict-template-expressions': [
+                    'error',
+                    { allowNumber: true },
+                ],
+            },
+        },
+
+        perfectionist.configs['recommended-natural'],
+        {
+            rules: {
+                'perfectionist/sort-imports': [
+                    'error',
+                    { internalPattern, type: 'natural' },
+                ],
+            },
+        },
+
+        {
+            plugins: { 'no-comments': noComments },
+            rules: {
+                'no-comments/disallowComments': [
+                    'error',
+                    {
+                        allow: [
+                            '@ts-',
+                            'eslint',
+                            'global',
+                            'prettier-ignore',
+                            'v8 ignore',
+                        ],
+                    },
+                ],
+                'no-console': ['error', { allow: ['error', 'warn'] }],
+            },
+        },
+
+        {
+            files: [
+                '**/*.test.{ts,tsx}',
+                '**/*.spec.{ts,tsx}',
+                'e2e/**',
+                'test/**',
+                'tests/**',
+            ],
+            rules: {
+                '@typescript-eslint/no-unsafe-argument': 'off',
+                '@typescript-eslint/no-unsafe-assignment': 'off',
+            },
+        },
+        {
+            files: ['scripts/**', '**/*.config.{ts,mts,js,mjs}'],
+            rules: { 'no-console': 'off' },
+        },
+
+        prettier,
+    ])
+}
+
+export default base
