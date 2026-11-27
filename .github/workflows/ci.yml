@@ -10,7 +10,7 @@ permissions:
 
 jobs:
     check:
-        uses: Jubstaaa/deploy-actions/.github/workflows/quality-gate.yml@f4677f5a29993bfe38facdc282c50ddd1edc9936 # v1.7.0
+        uses: Jubstaaa/deploy-actions/.github/workflows/quality-gate.yml@ef652dda66abe61a4f285512ee6add8a6f4b33e5 # v1.8.0
         with:
             test: false
             knip: false
