@@ -1,73 +1,79 @@
 {
-  "name": "@jubstaaa/config",
-  "version": "1.0.0",
-  "description": "Shared ESLint, TypeScript, Prettier and Renovate configuration",
-  "license": "MIT",
-  "author": "İlker Balcılar",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Jubstaaa/configs.git"
-  },
-  "type": "module",
-  "exports": {
-    "./eslint/base": "./eslint/base.js",
-    "./eslint/library": "./eslint/library.js",
-    "./eslint/next": "./eslint/next.js",
-    "./eslint/node": "./eslint/node.js",
-    "./eslint/react": "./eslint/react.js",
-    "./prettier": "./prettier/index.js",
-    "./tsconfig/base": "./typescript/base.json",
-    "./tsconfig/library": "./typescript/library.json",
-    "./tsconfig/next": "./typescript/next.json",
-    "./tsconfig/node": "./typescript/node.json"
-  },
-  "files": [
-    "eslint",
-    "typescript",
-    "prettier",
-    "default.json"
-  ],
-  "peerDependencies": {
-    "eslint": "^9.0.0 || ^10.0.0",
-    "prettier": "^3.0.0",
-    "typescript": "^5.0.0",
-    "eslint-plugin-jsx-a11y": "^6.0.0",
-    "eslint-config-next": ">=15",
-    "eslint-plugin-react-hooks": "^5.0.0 || ^6.0.0",
-    "eslint-plugin-react-refresh": "^0.4.0"
-  },
-  "dependencies": {
-    "@eslint/compat": "^2.1.1",
-    "eslint-config-prettier": "^10.1.9",
-    "eslint-plugin-no-comments": "^1.2.1",
-    "eslint-plugin-perfectionist": "^5.14.0",
-    "typescript-eslint": "^8.74.0"
-  },
-  "peerDependenciesMeta": {
-    "eslint-config-next": {
-      "optional": true
+    "name": "@jubstaa/config",
+    "version": "1.0.0",
+    "description": "Shared ESLint, TypeScript, Prettier and Renovate configuration",
+    "license": "MIT",
+    "author": "İlker Balcılar",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Jubstaaa/configs.git"
     },
-    "eslint-plugin-jsx-a11y": {
-      "optional": true
+    "type": "module",
+    "exports": {
+        "./eslint/base": "./eslint/base.js",
+        "./eslint/library": "./eslint/library.js",
+        "./eslint/next": "./eslint/next.js",
+        "./eslint/node": "./eslint/node.js",
+        "./eslint/react": "./eslint/react.js",
+        "./prettier": "./prettier/index.js",
+        "./tsconfig/base": "./typescript/base.json",
+        "./tsconfig/library": "./typescript/library.json",
+        "./tsconfig/next": "./typescript/next.json",
+        "./tsconfig/node": "./typescript/node.json"
     },
-    "eslint-plugin-react-hooks": {
-      "optional": true
+    "files": [
+        "eslint",
+        "typescript",
+        "prettier",
+        "default.json"
+    ],
+    "peerDependencies": {
+        "eslint": "^9.0.0 || ^10.0.0",
+        "eslint-config-next": ">=15",
+        "eslint-plugin-react-hooks": "^5.0.0 || ^6.0.0 || ^7.0.0",
+        "eslint-plugin-react-refresh": "^0.4.0 || ^0.5.0",
+        "prettier": "^3.0.0",
+        "typescript": "^5.0.0 || ^6.0.0"
     },
-    "eslint-plugin-react-refresh": {
-      "optional": true
+    "dependencies": {
+        "@eslint/compat": "^2.1.1",
+        "eslint-config-prettier": "^10.1.9",
+        "eslint-plugin-no-comments": "^1.2.1",
+        "eslint-plugin-perfectionist": "^5.14.0",
+        "typescript-eslint": "^8.74.0"
+    },
+    "peerDependenciesMeta": {
+        "eslint-config-next": {
+            "optional": true
+        },
+        "eslint-plugin-react-hooks": {
+            "optional": true
+        },
+        "eslint-plugin-react-refresh": {
+            "optional": true
+        }
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "keywords": [
+        "eslint-config",
+        "prettier-config",
+        "tsconfig",
+        "renovate-config"
+    ],
+    "bugs": {
+        "url": "https://github.com/Jubstaaa/configs/issues"
+    },
+    "homepage": "https://github.com/Jubstaaa/configs#readme",
+    "devDependencies": {
+        "@types/node": "^26.6.11",
+        "eslint": "^10.15.0",
+        "eslint-config-next": "^16.4.6",
+        "eslint-plugin-react-hooks": "^7.1.1",
+        "eslint-plugin-react-refresh": "^0.5.8",
+        "next": "16.4.6",
+        "prettier": "^3.10.1",
+        "typescript": "^5.9.3"
     }
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "keywords": [
-    "eslint-config",
-    "prettier-config",
-    "tsconfig",
-    "renovate-config"
-  ],
-  "bugs": {
-    "url": "https://github.com/Jubstaaa/configs/issues"
-  },
-  "homepage": "https://github.com/Jubstaaa/configs#readme"
 }
