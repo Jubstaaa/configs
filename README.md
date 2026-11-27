@@ -85,6 +85,16 @@ One line per repository, and the dependency policy lives in one place. Dependabo
 has no equivalent — its configuration cannot be shared — which is the reason to
 move.
 
+Patch and minor updates merge on their own through Renovate's platform
+automerge, which waits for the branch ruleset's required checks, so no
+repository needs a workflow holding a token to merge its own pull requests.
+Majors wait for a human, and so do four framework groups wherever they appear:
+**payload** (a bump can need a schema migration), **next** and **react** (they
+change prerendering and the RSC runtime) and **tailwind** (the generated CSS).
+GitHub Actions and container majors wait too, since those run inside a deploy
+next to its secrets. A rule only matches a package the project actually has, so
+a repository without Payload is unaffected by the Payload rule.
+
 ### Repository checks
 
 ```sh
