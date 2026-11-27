@@ -43,6 +43,22 @@
                 "dockerfile",
                 "docker-compose"
             ],
+            "matchUpdateTypes": [
+                "patch",
+                "digest"
+            ],
+            "groupName": "container images",
+            "automerge": true
+        },
+        {
+            "matchManagers": [
+                "dockerfile",
+                "docker-compose"
+            ],
+            "matchUpdateTypes": [
+                "major",
+                "minor"
+            ],
             "groupName": "container images",
             "automerge": false
         },
