@@ -71,6 +71,7 @@ export function base({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
                     'error',
                     {
                         allow: [
+                            '!/',
                             '#__PURE__',
                             '<reference',
                             '@jsx',
