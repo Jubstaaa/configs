@@ -23,17 +23,7 @@ export function base({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
             ],
             files: ['**/*.{ts,tsx,mts,cts}'],
             languageOptions: {
-                parserOptions: {
-                    projectService: {
-                        allowDefaultProject: [
-                            '*.ts',
-                            '*.mts',
-                            '*.js',
-                            '*.mjs',
-                        ],
-                    },
-                    tsconfigRootDir,
-                },
+                parserOptions: { projectService: true, tsconfigRootDir },
             },
             rules: {
                 '@typescript-eslint/consistent-type-imports': [
