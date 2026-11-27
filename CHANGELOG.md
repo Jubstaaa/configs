@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/Jubstaaa/configs/compare/v1.2.0...v1.3.0) (2026-11-27)
+
+
+### Features
+
+* **eslint:** let test doubles be untyped, as the other unsafe rules already allow ([#8](https://github.com/Jubstaaa/configs/issues/8)) ([59ae258](https://github.com/Jubstaaa/configs/commit/59ae258a657fb998e742361499127f5a57212389))
+
 ## [1.2.0](https://github.com/Jubstaaa/configs/compare/v1.1.0...v1.2.0) (2026-11-27)
 
 
