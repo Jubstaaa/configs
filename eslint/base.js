@@ -20,6 +20,10 @@ export function base({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
                     'error',
                     { fixStyle: 'inline-type-imports' },
                 ],
+                '@typescript-eslint/no-empty-function': [
+                    'error',
+                    { allow: ['arrowFunctions'] },
+                ],
                 '@typescript-eslint/no-import-type-side-effects': 'error',
                 '@typescript-eslint/no-unused-vars': [
                     'error',
