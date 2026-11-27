@@ -11,14 +11,15 @@
     "type": "module",
     "exports": {
         "./eslint/base": "./eslint/base.js",
+        "./eslint/library": "./eslint/library.js",
         "./eslint/next": "./eslint/next.js",
         "./eslint/node": "./eslint/node.js",
-        "./eslint/library": "./eslint/library.js",
+        "./eslint/react": "./eslint/react.js",
         "./prettier": "./prettier/index.js",
         "./tsconfig/base": "./typescript/base.json",
+        "./tsconfig/library": "./typescript/library.json",
         "./tsconfig/next": "./typescript/next.json",
-        "./tsconfig/node": "./typescript/node.json",
-        "./tsconfig/library": "./typescript/library.json"
+        "./tsconfig/node": "./typescript/node.json"
     },
     "files": [
         "eslint",
@@ -31,7 +32,9 @@
         "prettier": "^3.0.0",
         "typescript": "^5.0.0",
         "eslint-plugin-jsx-a11y": "^6.0.0",
-        "eslint-config-next": ">=15"
+        "eslint-config-next": ">=15",
+        "eslint-plugin-react-hooks": "^5.0.0 || ^6.0.0",
+        "eslint-plugin-react-refresh": "^0.4.0"
     },
     "dependencies": {
         "eslint-config-prettier": "^10.1.9",
@@ -44,6 +47,12 @@
             "optional": true
         },
         "eslint-plugin-jsx-a11y": {
+            "optional": true
+        },
+        "eslint-plugin-react-hooks": {
+            "optional": true
+        },
+        "eslint-plugin-react-refresh": {
             "optional": true
         }
     }
