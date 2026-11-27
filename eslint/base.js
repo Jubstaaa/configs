@@ -71,9 +71,9 @@ export function base({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
                     'error',
                     {
                         allow: [
-                            '!/',
+                            '/(usr|bin)/',
                             '#__PURE__',
-                            '<reference',
+                            '/ <reference',
                             '@jsx',
                             '@license',
                             '@preserve',
