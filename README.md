@@ -134,6 +134,9 @@ keeps a ruleset on every repository's default branch in step with the checks
 its pull requests actually report, on a schedule, so a repository created
 tomorrow is covered without being named.
 
+ESLint 10 is required: the presets read `.gitignore` through the
+`includeIgnoreFile` that `eslint/config` exports, which ESLint 9 does not have.
+
 ### How this package is built
 
 The presets are TypeScript, compiled to JavaScript and `.d.ts` by `tsc` into

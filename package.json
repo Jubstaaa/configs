@@ -3,7 +3,7 @@
     "version": "1.6.0",
     "description": "Shared ESLint, TypeScript, Prettier and Renovate configuration",
     "license": "MIT",
-    "author": "İlker Balcılar",
+    "author": "\u0130lker Balc\u0131lar",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Jubstaaa/configs.git"
@@ -45,7 +45,7 @@
         "typescript"
     ],
     "peerDependencies": {
-        "eslint": "^9.0.0 || ^10.0.0",
+        "eslint": "^10.0.0",
         "eslint-config-next": ">=15",
         "eslint-plugin-react-hooks": "^5.0.0 || ^6.0.0 || ^7.0.0",
         "eslint-plugin-react-refresh": "^0.4.0 || ^0.5.0",
