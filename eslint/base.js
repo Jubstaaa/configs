@@ -101,6 +101,8 @@ export function base({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
                 'tests/**',
             ],
             rules: {
+                '@typescript-eslint/await-thenable': 'off',
+                '@typescript-eslint/no-confusing-void-expression': 'off',
                 '@typescript-eslint/no-empty-function': 'off',
                 '@typescript-eslint/no-non-null-assertion': 'off',
                 '@typescript-eslint/no-unsafe-enum-assignment': 'off',
