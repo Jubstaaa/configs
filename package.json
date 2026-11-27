@@ -3,7 +3,7 @@
     "version": "1.3.0",
     "description": "Shared ESLint, TypeScript, Prettier and Renovate configuration",
     "license": "MIT",
-    "author": "İlker Balcılar",
+    "author": "\u0130lker Balc\u0131lar",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Jubstaaa/configs.git"
@@ -22,10 +22,11 @@
         "./tsconfig/node": "./typescript/node.json"
     },
     "files": [
+        "default.json",
         "eslint",
-        "typescript",
         "prettier",
-        "default.json"
+        "scripts/doctor.js",
+        "typescript"
     ],
     "peerDependencies": {
         "eslint": "^9.0.0 || ^10.0.0",
@@ -75,5 +76,9 @@
         "next": "16.4.6",
         "prettier": "^3.10.1",
         "typescript": "^5.9.3"
-    }
+    },
+    "bin": {
+        "jubstaa-doctor": "./scripts/doctor.js"
+    },
+    "packageManager": "bun@1.4.4"
 }
