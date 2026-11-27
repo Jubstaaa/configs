@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/Jubstaaa/configs/compare/v1.1.0...v1.2.0) (2026-11-27)
+
+
+### Features
+
+* publish through OIDC instead of a token ([#5](https://github.com/Jubstaaa/configs/issues/5)) ([af39ea2](https://github.com/Jubstaaa/configs/commit/af39ea2ce004d5ab265effe2b11b787a173f61a3))
+* **scripts:** apply the same branch protection to every repository ([#6](https://github.com/Jubstaaa/configs/issues/6)) ([44e5c3f](https://github.com/Jubstaaa/configs/commit/44e5c3f3f6bdb9d986371b8e0e8f989b66555cb0))
+
 ## [1.1.0](https://github.com/Jubstaaa/configs/compare/v1.0.0...v1.1.0) (2026-11-27)
 
 ### Features
