@@ -83,8 +83,11 @@ export function base({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
                 'tests/**',
             ],
             rules: {
+                '@typescript-eslint/no-empty-function': 'off',
                 '@typescript-eslint/no-unsafe-argument': 'off',
                 '@typescript-eslint/no-unsafe-assignment': 'off',
+                '@typescript-eslint/no-unsafe-class-instance-assignment': 'off',
+                '@typescript-eslint/require-await': 'off',
             },
         },
         {
