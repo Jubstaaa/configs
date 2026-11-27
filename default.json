@@ -40,6 +40,35 @@
             "automerge": false
         },
         {
+            "matchPackageNames": ["payload", "@payloadcms/**"],
+            "groupName": "payload",
+            "automerge": false
+        },
+        {
+            "matchPackageNames": ["next", "@next/**", "eslint-config-next"],
+            "groupName": "next",
+            "automerge": false
+        },
+        {
+            "matchPackageNames": [
+                "react",
+                "react-dom",
+                "@types/react",
+                "@types/react-dom"
+            ],
+            "groupName": "react",
+            "automerge": false
+        },
+        {
+            "matchPackageNames": ["tailwindcss", "@tailwindcss/**"],
+            "groupName": "tailwind",
+            "automerge": false
+        },
+        {
+            "matchPackageNames": ["@fortawesome/**"],
+            "groupName": "fortawesome"
+        },
+        {
             "matchPackageNames": ["/^@tauri-apps//", "/^tauri/"],
             "groupName": "tauri"
         }
