@@ -16,7 +16,7 @@ export function next({ tsconfigRootDir, internalPattern = ['^@/'] } = {}) {
         ]),
         ...nextVitals,
         ...nextTs,
-        { rules: jsxA11y.flatConfigs.recommended.rules },
+        jsxA11y.flatConfigs.recommended,
         ...base({ internalPattern, tsconfigRootDir }),
         {
             files: ['next.config.{ts,mts,js,mjs}'],
