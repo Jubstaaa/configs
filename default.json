@@ -40,6 +40,26 @@
             "automerge": false
         },
         {
+            "matchPackageNames": [
+                "eslint",
+                "@eslint/**",
+                "typescript-eslint",
+                "@typescript-eslint/**",
+                "eslint-plugin-*",
+                "eslint-config-prettier"
+            ],
+            "groupName": "eslint"
+        },
+        {
+            "matchPackageNames": ["vite", "@vitejs/**"],
+            "groupName": "vite"
+        },
+        {
+            "matchPackageNames": ["typescript", "@typescript/typescript6"],
+            "matchUpdateTypes": ["major"],
+            "enabled": false
+        },
+        {
             "matchPackageNames": ["payload", "@payloadcms/**"],
             "groupName": "payload",
             "automerge": false
