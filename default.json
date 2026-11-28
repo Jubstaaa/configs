@@ -60,6 +60,18 @@
             "enabled": false
         },
         {
+            "matchPackageNames": ["astro", "@astrojs/**", "astro-icon"],
+            "groupName": "astro"
+        },
+        {
+            "matchPackageNames": ["prettier", "prettier-plugin-*"],
+            "groupName": "prettier"
+        },
+        {
+            "matchPackageNames": ["@iconify-json/**"],
+            "groupName": "iconify"
+        },
+        {
             "matchPackageNames": ["payload", "@payloadcms/**"],
             "groupName": "payload",
             "automerge": false
@@ -91,6 +103,23 @@
         {
             "matchPackageNames": ["/^@tauri-apps//", "/^tauri/"],
             "groupName": "tauri"
+        },
+        {
+            "matchManagers": ["npm", "bun", "cargo", "github-actions"],
+            "minimumReleaseAge": "7 days"
+        },
+        {
+            "matchUpdateTypes": [
+                "lockFileMaintenance",
+                "pin",
+                "pinDigest",
+                "digest",
+                "replacement",
+                "bump",
+                "lockfileUpdate",
+                "rollback"
+            ],
+            "minimumReleaseAge": null
         }
     ],
     "lockFileMaintenance": {

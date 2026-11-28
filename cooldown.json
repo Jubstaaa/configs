@@ -1,28 +1,3 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "packageRules": [
-        {
-            "description": [
-                "Wait a week before proposing a new release: compromised versions are usually caught and pulled within days. Security updates ignore this."
-            ],
-            "matchManagers": ["npm", "bun", "cargo", "github-actions"],
-            "minimumReleaseAge": "7 days"
-        },
-        {
-            "description": [
-                "These update types carry no release timestamp, so there is nothing to wait for."
-            ],
-            "matchUpdateTypes": [
-                "lockFileMaintenance",
-                "pin",
-                "pinDigest",
-                "digest",
-                "replacement",
-                "bump",
-                "lockfileUpdate",
-                "rollback"
-            ],
-            "minimumReleaseAge": null
-        }
-    ]
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json"
 }
