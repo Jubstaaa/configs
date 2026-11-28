@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/Jubstaaa/configs/compare/v2.0.1...v2.1.0) (2026-11-28)
+
+
+### Features
+
+* **doctor:** check that the README has a title and a license section ([#34](https://github.com/Jubstaaa/configs/issues/34)) ([6883629](https://github.com/Jubstaaa/configs/commit/6883629ba60d14eb14e9a0e2df67a3d1be912c46))
+
 ## [2.0.1](https://github.com/Jubstaaa/configs/compare/v2.0.0...v2.0.1) (2026-11-28)
 
 
