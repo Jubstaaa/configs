@@ -100,11 +100,18 @@ group each. TypeScript majors are held back for every repository: typescript-esl
 does not support TypeScript 7 yet, so taking it breaks lint. Remove that rule from
 `default.json` once typescript-eslint's peer range includes 7.
 
-A repository that wants a one-week cooldown on npm, Cargo and GitHub Actions
-releases adds one more line, and security updates still arrive at once:
+New npm, Cargo and GitHub Actions releases wait a week before a pull request
+is opened: compromised versions are usually caught and pulled within days.
+Security updates do not wait. A repository that wants a longer cooldown sets
+`minimumReleaseAge` itself.
+
+React Native projects on Expo add one more line. It groups the Expo packages and
+holds back the ones each Expo SDK pins (`react`, `react-native`, reanimated and so
+on), which is why it is a preset of its own: holding `react` back would freeze it
+in every web project.
 
 ```json
-{ "extends": ["github>Jubstaaa/configs", "github>Jubstaaa/configs:cooldown"] }
+{ "extends": ["github>Jubstaaa/configs", "github>Jubstaaa/configs:expo"] }
 ```
 
 ### Repository checks
