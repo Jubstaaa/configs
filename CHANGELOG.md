@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0](https://github.com/Jubstaaa/configs/compare/v1.6.0...v2.0.0) (2026-11-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* require ESLint 10 ([#23](https://github.com/Jubstaaa/configs/issues/23))
+
+### Features
+
+* **renovate:** hold the framework groups back everywhere ([#22](https://github.com/Jubstaaa/configs/issues/22)) ([6f92373](https://github.com/Jubstaaa/configs/commit/6f92373ada81d2c0b83a7b2dd9b019555fe983b7))
+
+
+### Bug Fixes
+
+* **doctor:** stop requiring a module type ([#24](https://github.com/Jubstaaa/configs/issues/24)) ([a07fa89](https://github.com/Jubstaaa/configs/commit/a07fa89a6820b3133d3db7500592e8ae9e9d5a60))
+* require ESLint 10 ([#23](https://github.com/Jubstaaa/configs/issues/23)) ([4ff4331](https://github.com/Jubstaaa/configs/commit/4ff43310da854f4fa94576edd9c9ee312abd5db8))
+
 ## [1.6.0](https://github.com/Jubstaaa/configs/compare/v1.5.0...v1.6.0) (2026-11-27)
 
 

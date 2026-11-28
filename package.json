@@ -1,9 +1,9 @@
 {
     "name": "@jubstaa/config",
-    "version": "1.6.0",
+    "version": "2.0.0",
     "description": "Shared ESLint, TypeScript, Prettier and Renovate configuration",
     "license": "MIT",
-    "author": "\u0130lker Balc\u0131lar",
+    "author": "İlker Balcılar",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Jubstaaa/configs.git"
