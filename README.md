@@ -105,14 +105,10 @@ is opened: compromised versions are usually caught and pulled within days.
 Security updates do not wait. A repository that wants a longer cooldown sets
 `minimumReleaseAge` itself.
 
-React Native projects on Expo add one more line. It groups the Expo packages and
-holds back the ones each Expo SDK pins (`react`, `react-native`, reanimated and so
-on), which is why it is a preset of its own: holding `react` back would freeze it
-in every web project.
-
-```json
-{ "extends": ["github>Jubstaaa/configs", "github>Jubstaaa/configs:expo"] }
-```
+React Native projects on Expo need no extra line. The Expo packages move as one group
+everywhere, and the versions each Expo SDK pins (`react`, `react-native`, reanimated and
+so on) are held back only in `apps/mobile`, where the Expo app lives: holding `react`
+back anywhere else would freeze it in every web project.
 
 ### Repository checks
 

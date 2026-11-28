@@ -72,6 +72,40 @@
             "groupName": "iconify"
         },
         {
+            "matchPackageNames": [
+                "expo",
+                "expo-*",
+                "@expo/**",
+                "babel-preset-expo",
+                "react-native",
+                "react-native-*",
+                "@shopify/react-native-skia"
+            ],
+            "groupName": "expo"
+        },
+        {
+            "matchFileNames": ["apps/mobile/**"],
+            "matchPackageNames": [
+                "react",
+                "react-dom",
+                "react-native",
+                "react-native-reanimated",
+                "react-native-worklets",
+                "react-native-svg",
+                "@shopify/react-native-skia"
+            ],
+            "enabled": false
+        },
+        {
+            "matchFileNames": ["apps/mobile/**"],
+            "matchPackageNames": [
+                "react-native-safe-area-context",
+                "react-native-screens"
+            ],
+            "matchUpdateTypes": ["major", "minor"],
+            "enabled": false
+        },
+        {
             "matchPackageNames": ["payload", "@payloadcms/**"],
             "groupName": "payload",
             "automerge": false
