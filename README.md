@@ -95,6 +95,13 @@ GitHub Actions and container majors wait too, since those run inside a deploy
 next to its secrets. A rule only matches a package the project actually has, so
 a repository without Payload is unaffected by the Payload rule.
 
+A repository that wants a one-week cooldown on npm, Cargo and GitHub Actions
+releases adds one more line, and security updates still arrive at once:
+
+```json
+{ "extends": ["github>Jubstaaa/configs", "github>Jubstaaa/configs:cooldown"] }
+```
+
 ### Repository checks
 
 ```sh
