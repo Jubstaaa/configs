@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/Jubstaaa/configs/compare/v2.0.0...v2.0.1) (2026-11-28)
+
+
+### Bug Fixes
+
+* describe the GitHub App release token in the README ([#32](https://github.com/Jubstaaa/configs/issues/32)) ([8efb918](https://github.com/Jubstaaa/configs/commit/8efb9183eb532ae78f59d6928288a07048c72722))
+
 ## [2.0.0](https://github.com/Jubstaaa/configs/compare/v1.6.0...v2.0.0) (2026-11-28)
 
 
