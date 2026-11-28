@@ -95,6 +95,11 @@ GitHub Actions and container majors wait too, since those run inside a deploy
 next to its secrets. A rule only matches a package the project actually has, so
 a repository without Payload is unaffected by the Payload rule.
 
+**eslint** (with typescript-eslint and the plugins) and **vite** move as one
+group each. TypeScript majors are held back for every repository: typescript-eslint
+does not support TypeScript 7 yet, so taking it breaks lint. Remove that rule from
+`default.json` once typescript-eslint's peer range includes 7.
+
 A repository that wants a one-week cooldown on npm, Cargo and GitHub Actions
 releases adds one more line, and security updates still arrive at once:
 
