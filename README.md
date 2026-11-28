@@ -131,10 +131,11 @@ The reason to keep comments out of YAML is the same as in code: a comment
 cannot be run, so it goes stale without anything failing. Rationale belongs in
 the README, where it is read; the workflow should say what it does by itself.
 
-The release pull request is opened with a personal access token rather than
-`GITHUB_TOKEN`: a pull request opened with the built-in token starts no
+The release pull request is opened with a token minted from a GitHub App rather
+than `GITHUB_TOKEN`: a pull request opened with the built-in token starts no
 workflows, so its required checks would never report and the release would sit
-blocked behind the branch ruleset.
+blocked behind the branch ruleset. The App's token lasts an hour, where a
+personal access token would live for ever.
 
 Two things the release workflow no longer says in a comment, because they are
 easy to break and belong here: it runs on **Node 24**, since trusted publishing
