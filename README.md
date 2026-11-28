@@ -118,13 +118,14 @@ npx --yes --package=@jubstaa/config jubstaa-doctor
 
 `jubstaa-doctor` checks what every repository is supposed to have, from the
 repository root. `--only=<check>[,<check>]` runs a subset; the checks are
-`yaml-comments`, `files`, `package` and `scripts`.
+`yaml-comments`, `files`, `package`, `readme` and `scripts`.
 
 | Check           | What it fails on                                                                                                                                                                                                                                                                                                                                   |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `yaml-comments` | a prose comment in any tracked `.yml`/`.yaml`. Machine-readable ones stay: the version after a pinned action SHA (`# v7.0.1`), which is what Renovate reads to know which tag that SHA is, plus `yaml-language-server:`, `renovate:`, `yamllint`, `checkov:skip=`, `trivy:ignore:`, `noqa`, `shellcheck disable=`, `prettier-ignore` and `zizmor:` |
 | `files`         | a missing `LICENSE` or `README.md`                                                                                                                                                                                                                                                                                                                 |
-| `package`       | a missing `license`, `name`, `repository`, `type` or `packageManager`; a public package with no `version`                                                                                                                                                                                                                                          |
+| `package`       | a missing `license`, `name`, `repository` or `packageManager`; a public package with no `version`                                                                                                                                                                                                                                                  |
+| `readme`        | a `README.md` with no `# ` title or no `## License` section; code blocks do not count                                                                                                                                                                                                                                                              |
 | `scripts`       | a script under an old name — `type-check`, `tsc`, `types`, `deps:check`, `deps:graph`, `dupes`, `duplication` — when the canonical name (`typecheck`, `depcruise`, `jscpd`) is not also defined                                                                                                                                                    |
 
 The reason to keep comments out of YAML is the same as in code: a comment

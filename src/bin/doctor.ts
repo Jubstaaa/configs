@@ -29,7 +29,13 @@ const ALLOWED_COMMENT = [
     /^\s?zizmor:\s/,
 ]
 
-const CHECKS = ['yaml-comments', 'files', 'package', 'scripts'] as const
+const CHECKS = [
+    'yaml-comments',
+    'files',
+    'package',
+    'readme',
+    'scripts',
+] as const
 
 const REQUIRED_FIELDS = ['license', 'name', 'repository'] as const
 
@@ -68,6 +74,18 @@ function packageFields(pkg: null | PackageJson, report: Report): void {
     }
     if (pkg.private !== true && pkg.version === undefined) {
         report('package.json: a published package needs "version"')
+    }
+}
+
+function readme(list: string[], report: Report): void {
+    if (!list.includes('README.md')) return
+    const text = readFileSync('README.md', 'utf8').replace(
+        /^(```|~~~)[\s\S]*?^\1/gm,
+        ''
+    )
+    if (!/^# \S/m.test(text)) report('README.md: no "# " title')
+    if (!/^## licen[cs]e\s*$/im.test(text)) {
+        report('README.md: no "## License" section')
     }
 }
 
@@ -159,6 +177,7 @@ const pkg = readPackage()
 if (wanted('yaml-comments')) yamlComments(list, report)
 if (wanted('files')) files(list, report)
 if (wanted('package')) packageFields(pkg, report)
+if (wanted('readme')) readme(list, report)
 if (wanted('scripts')) scripts(pkg, report)
 
 if (problems.length > 0) {
